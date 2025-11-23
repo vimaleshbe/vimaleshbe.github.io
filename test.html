@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            line-height: 1.6; 
+        }
+        .test-result { 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+        }
+        .success { 
+            background-color: #d4edda; 
+            color: #155724; 
+            border: 1px solid #c3e6cb; 
+        }
+        .error { 
+            background-color: #f8d7da; 
+            color: #721c24; 
+            border: 1px solid #f5c6cb; 
+        }
+        .info { 
+            background-color: #d1ecf1; 
+            color: #0c5460; 
+            border: 1px solid #bee5eb; 
+        }
+        pre { 
+            background: #f8f9fa; 
+            padding: 10px; 
+            border-radius: 5px; 
+            overflow-x: auto; 
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Profile Page Diagnostics</h1>
+    <div id="test-results"></div>
+
+    <script>
+        const results = document.getElementById('test-results');
+
+        function addResult(type, title, message) {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<strong>${title}</strong><br>${message}`;
+            results.appendChild(div);
+        }
+
+        // Test 1: Basic JavaScript
+        try {
+            addResult('success', '✅ JavaScript Working', 'Basic JavaScript execution is working');
+        } catch (e) {
+            addResult('error', '❌ JavaScript Error', e.message);
+        }
+
+        // Test 2: DOM Manipulation
+        try {
+            const testDiv = document.createElement('div');
+            testDiv.textContent = 'DOM manipulation test';
+            addResult('success', '✅ DOM Manipulation', 'Document manipulation is working');
+        } catch (e) {
+            addResult('error', '❌ DOM Error', e.message);
+        }
+
+        // Test 3: Fetch API
+        async function testFetch() {
+            try {
+                const response = await fetch('config.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult('success', '✅ Config.json Loaded', 'Successfully loaded config.json via fetch');
+                    addResult('info', '📝 Config Data', `<pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>`);
+                } else {
+                    addResult('error', '❌ Config.json Failed', `HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (e) {
+                addResult('error', '❌ Fetch Error', `${e.message} - This is expected when opening HTML directly`);
+                
+                // Test fallback data
+                testFallback();
+            }
+        }
+
+        // Test 4: Fallback Configuration
+        function testFallback() {
+            const fallbackConfig = {
+                personal: {
+                    name: "Test User",
+                    title: "Test Developer",
+                    tagline: "Testing fallback configuration"
+                }
+            };
+            
+            if (fallbackConfig && fallbackConfig.personal) {
+                addResult('success', '✅ Fallback Config', 'Fallback configuration is properly structured');
+                addResult('info', '📋 Fallback Data', `Name: ${fallbackConfig.personal.name}<br>Title: ${fallbackConfig.personal.title}`);
+            } else {
+                addResult('error', '❌ Fallback Config', 'Fallback configuration is invalid');
+            }
+        }
+
+        // Test 5: Required Elements
+        function testElements() {
+            const requiredIds = ['hero-name', 'hero-title', 'hero-tagline', 'profile-photo', 'social-links'];
+            const missingElements = [];
+            
+            requiredIds.forEach(id => {
+                const element = document.getElementById(id);
+                if (!element) {
+                    missingElements.push(id);
+                }
+            });
+            
+            if (missingElements.length === 0) {
+                addResult('success', '✅ HTML Elements', 'All required HTML elements are present');
+            } else {
+                addResult('error', '❌ Missing Elements', `Missing elements: ${missingElements.join(', ')}`);
+            }
+        }
+
+        // Run tests
+        testFetch();
+        testElements();
+
+        // Test 6: CSS Loading
+        setTimeout(() => {
+            const body = getComputedStyle(document.body);
+            if (body.fontFamily.includes('Arial')) {
+                addResult('success', '✅ CSS Loading', 'CSS styles are being applied');
+            } else {
+                addResult('error', '❌ CSS Loading', 'CSS may not be loading properly');
+            }
+        }, 100);
+
+        // Add instructions
+        setTimeout(() => {
+            addResult('info', '💡 Next Steps', `
+                <strong>If config.json failed to load:</strong><br>
+                1. Use VS Code Live Server extension<br>
+                2. Or edit the fallback configuration in assets/js/script.js<br>
+                3. Or check if the main index.html has all required HTML elements<br><br>
+                <strong>To fix the main page:</strong><br>
+                1. Ensure all required HTML elements exist<br>
+                2. Check browser console for specific errors<br>
+                3. Make sure CSS and JS files are loading properly
+            `);
+        }, 500);
+    </script>
+</body>
+</html>

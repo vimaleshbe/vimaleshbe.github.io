@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        .test-image { 
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; 
+            object-fit: cover;
+            border: 3px solid #2563eb;
+            margin: 20px;
+        }
+        .status { 
+            padding: 10px; 
+            margin: 10px; 
+            border-radius: 5px; 
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Image Loading Test</h1>
+    
+    <h2>Testing Profile Image</h2>
+    <img src="img/profile.jpg" alt="Profile" class="test-image" id="profile-test">
+    <div id="profile-status">Loading...</div>
+    
+    <h2>Testing Other Image</h2>
+    <img src="img/295A9224.jpg" alt="Other image" class="test-image" id="other-test">
+    <div id="other-status">Loading...</div>
+    
+    <h2>Image Paths</h2>
+    <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>Expected paths:</strong><br>
+        📁 img/profile.jpg<br>
+        📁 img/295A9224.jpg<br><br>
+        
+        <strong>Full URLs:</strong><br>
+        🌐 <span id="profile-url"></span><br>
+        🌐 <span id="other-url"></span>
+    </div>
+
+    <script>
+        // Test profile image
+        const profileImg = document.getElementById('profile-test');
+        const profileStatus = document.getElementById('profile-status');
+        const profileUrl = document.getElementById('profile-url');
+        
+        profileUrl.textContent = new URL('img/profile.jpg', window.location).href;
+        
+        profileImg.onload = function() {
+            profileStatus.className = 'status success';
+            profileStatus.textContent = '✅ Profile image loaded successfully!';
+            console.log('✅ Profile image dimensions:', this.naturalWidth, 'x', this.naturalHeight);
+        };
+        
+        profileImg.onerror = function() {
+            profileStatus.className = 'status error';
+            profileStatus.textContent = '❌ Profile image failed to load';
+            console.error('❌ Profile image failed to load from:', this.src);
+        };
+        
+        // Test other image
+        const otherImg = document.getElementById('other-test');
+        const otherStatus = document.getElementById('other-status');
+        const otherUrl = document.getElementById('other-url');
+        
+        otherUrl.textContent = new URL('img/295A9224.jpg', window.location).href;
+        
+        otherImg.onload = function() {
+            otherStatus.className = 'status success';
+            otherStatus.textContent = '✅ Other image loaded successfully!';
+            console.log('✅ Other image dimensions:', this.naturalWidth, 'x', this.naturalHeight);
+        };
+        
+        otherImg.onerror = function() {
+            otherStatus.className = 'status error';
+            otherStatus.textContent = '❌ Other image failed to load';
+            console.error('❌ Other image failed to load from:', this.src);
+        };
+        
+        // Add file existence check
+        async function checkFiles() {
+            const files = ['img/profile.jpg', 'img/295A9224.jpg'];
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    console.log(`📁 ${file}: ${response.ok ? 'EXISTS' : 'NOT FOUND'} (${response.status})`);
+                } catch (e) {
+                    console.log(`📁 ${file}: ERROR - ${e.message}`);
+                }
+            }
+        }
+        
+        checkFiles();
+    </script>
+</body>
+</html>

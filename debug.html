@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Profile</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Profile Debug Test</h1>
+    <div id="debug-output"></div>
+
+    <!-- Test Elements -->
+    <div style="display: none;">
+        <h1 id="hero-name">Test Name</h1>
+        <h2 id="hero-title">Test Title</h2>  
+        <p id="hero-tagline">Test Tagline</p>
+        <img id="profile-photo" src="" alt="Profile Photo">
+        <div id="social-links"></div>
+    </div>
+
+    <script>
+        const debugOutput = document.getElementById('debug-output');
+
+        function addDebug(message) {
+            const div = document.createElement('div');
+            div.className = 'debug';
+            div.innerHTML = message;
+            debugOutput.appendChild(div);
+        }
+
+        addDebug('🚀 Starting debug...');
+
+        // Test element finding
+        const elements = ['hero-name', 'hero-title', 'hero-tagline', 'profile-photo', 'social-links'];
+        elements.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                addDebug(`✅ Found element: ${id} - ${element.tagName}`);
+            } else {
+                addDebug(`❌ Missing element: ${id}`);
+            }
+        });
+
+        // Test config loading
+        async function testConfig() {
+            try {
+                const response = await fetch('config.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    addDebug(`✅ Config loaded: ${data.personal.name}`);
+                    
+                    // Test population
+                    document.getElementById('hero-name').textContent = data.personal.name;
+                    document.getElementById('hero-title').textContent = data.personal.title;
+                    document.getElementById('hero-tagline').textContent = data.personal.tagline;
+                    
+                    addDebug(`✅ Successfully populated test elements`);
+                } else {
+                    addDebug(`❌ Config failed: ${response.status}`);
+                }
+            } catch (e) {
+                addDebug(`❌ Config error: ${e.message}`);
+            }
+        }
+
+        testConfig();
+
+        addDebug('🏁 Debug complete');
+    </script>
+</body>
+</html>
