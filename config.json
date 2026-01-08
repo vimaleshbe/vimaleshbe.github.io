@@ -3,7 +3,7 @@
     "name": "Vimalesh Jeyavelmani",
     "title": "AI Solutions Architect | Data Engineer | Agentic Orchestration Specialist",
     "tagline": "Building the future with AI agents, intelligent orchestration systems, and reactive data platforms",
-    "bio": "I am an Associate Architect at EY with 9+ years of experience in software architecture and data engineering. I have a strong passion for AI technologies and agentic orchestration, working on multiple personal applications using cutting-edge technologies including Camunda 8.8 for agentic orchestration, Azure OpenAI, AutoGen, and Model Context Protocol (MCP). I'm currently developing an enterprise-level agentic orchestration tool using Spring AI and MCP as a personal project. My expertise spans from designing microservices architectures to implementing reactive data platforms and exploring multi-agent systems for intelligent automation.",
+    "bio": "I am an Associate Architect at EY with 10 years of experience in software architecture and data engineering. I have a strong passion for AI technologies and agentic orchestration, working on multiple personal applications using cutting-edge technologies including Camunda 8.8 for agentic orchestration, Azure OpenAI, AutoGen, and Model Context Protocol (MCP). I'm currently developing an enterprise-level agentic orchestration tool using Spring AI and MCP as a personal project. My expertise spans from designing microservices architectures to implementing reactive data platforms and exploring multi-agent systems for intelligent automation.",
     "profilePhoto": "img/profile.jpg",
     "location": "Chennai, Tamil Nadu, India",
     "email": "vimaleshbe@gmail.com"
@@ -15,27 +15,69 @@
   "skills": [
     {
       "category": "AI & Agentic Orchestration",
-      "technologies": ["Camunda 8.8 Agentic Orchestration", "Azure OpenAI", "AutoGen", "Model Context Protocol (MCP)", "Spring AI", "Multi-Agent Systems", "AI Engineering"]
+      "technologies": [
+        "Camunda 8.8 Agentic Orchestration",
+        "Azure OpenAI",
+        "AutoGen",
+        "Model Context Protocol (MCP)",
+        "Spring AI",
+        "Multi-Agent Systems",
+        "AI Engineering"
+      ]
     },
     {
       "category": "Enterprise AI Development",
-      "technologies": ["ChatGPT APIs", "LangChain", "AI Agent Development", "Intelligent Automation", "Workflow Orchestration", "Agent Communication Protocols"]
+      "technologies": [
+        "ChatGPT APIs",
+        "LangChain",
+        "AI Agent Development",
+        "Intelligent Automation",
+        "Workflow Orchestration",
+        "Agent Communication Protocols"
+      ]
     },
     {
       "category": "Architecture & Design",
-      "technologies": ["AI-Driven Microservices", "Event-Driven Architecture", "Solution Architecture", "System Design", "Cloud Architecture"]
+      "technologies": [
+        "AI-Driven Microservices",
+        "Event-Driven Architecture",
+        "Solution Architecture",
+        "System Design",
+        "Cloud Architecture"
+      ]
     },
     {
       "category": "Programming Languages",
-      "technologies": ["Java", "Python", "Scala", "JavaScript", "Spring Boot", "TypeScript"]
+      "technologies": [
+        "Java",
+        "Python",
+        "Scala",
+        "JavaScript",
+        "Spring Boot",
+        "TypeScript"
+      ]
     },
     {
       "category": "Cloud & DevOps",
-      "technologies": ["AWS", "Microsoft Azure", "Azure AI Services", "Docker", "Kubernetes", "OpenStack"]
+      "technologies": [
+        "AWS",
+        "Microsoft Azure",
+        "Azure AI Services",
+        "Docker",
+        "Kubernetes",
+        "OpenStack"
+      ]
     },
     {
       "category": "Data & Analytics",
-      "technologies": ["Apache Spark", "Apache Flink", "Data Engineering", "Real-time Analytics", "SQL", "R"]
+      "technologies": [
+        "Apache Spark",
+        "Apache Flink",
+        "Data Engineering",
+        "Real-time Analytics",
+        "SQL",
+        "R"
+      ]
     }
   ],
   "experience": [
@@ -134,28 +176,12 @@
       "description": "Certification in AI engineering principles and implementation"
     },
     {
-      "name": "Learn Camunda BPMN, DMN with Spring Boot",
-      "issuer": "Udemy",
-      "date": "Mar 2025",
-      "credentialId": "UC-53e3bfbb-0b33-4b24-ab3d-a9402130c990",
-      "verificationUrl": "https://www.udemy.com/certificate/UC-53e3bfbb-0b33-4b24-ab3d-a9402130c990/",
-      "description": "Comprehensive course on business process modeling and decision management with Spring Boot integration"
-    },
-    {
       "name": "ChatGPT, Midjourney, DALL-E 3 & APIs - The Complete Guide",
       "issuer": "Udemy",
       "date": "Mar 2024",
       "credentialId": "UC-67a687c0-ddb4-4876-993e-f14a6bd83f84",
       "verificationUrl": "https://www.udemy.com/certificate/UC-67a687c0-ddb4-4876-993e-f14a6bd83f84/",
       "description": "Complete guide to AI tools and APIs for creative and development applications"
-    },
-    {
-      "name": "Master SQL For Data Science",
-      "issuer": "Udemy",
-      "date": "Jan 2023",
-      "credentialId": "UC-5d66fd24-7bbd-460c-83c0-fcd46bd9d29c",
-      "verificationUrl": "https://www.udemy.com/certificate/UC-5d66fd24-7bbd-460c-83c0-fcd46bd9d29c/",
-      "description": "Advanced SQL techniques and optimization for data science applications"
     },
     {
       "name": "EY Data Strategy - Data Platform - Bronze",
@@ -190,37 +216,12 @@
       "description": "Real-time data processing with Apache Flink for streaming applications"
     },
     {
-      "name": "Scala & Functional Programming Essentials | Rock the JVM",
-      "issuer": "Udemy",
-      "date": "May 2021",
-      "credentialId": "UC-f4730048-0fd2-46c6-bf9a-a2f08f091ae6",
-      "verificationUrl": "",
-      "description": "Comprehensive Scala programming and functional programming concepts"
-    },
-    {
       "name": "R Programming A-Z™: R For Data Science With Real Exercises!",
       "issuer": "Udemy",
       "date": "Mar 2021",
       "credentialId": "UC-b3e86b32-d489-4a5a-9fc9-9a98c19a5a54",
       "verificationUrl": "",
       "description": "Complete R programming course for data science and statistical analysis"
-    },
-
-    {
-      "name": "Microservices with Spring Boot and Spring Cloud",
-      "issuer": "Udemy",
-      "date": "2020",
-      "credentialId": "UC-96ad9aa2-b5d2-4f3b-b2b5-c95b0094a10d",
-      "verificationUrl": "",
-      "description": "Complete guide to building microservices architecture with Spring technologies"
-    },
-    {
-      "name": "React JS & Redux",
-      "issuer": "Udemy",
-      "date": "May 2019",
-      "credentialId": "UC-R2RBETJ4",
-      "verificationUrl": "",
-      "description": "Modern React.js development with Redux state management"
     },
     {
       "name": "Spring Boot / WebFlux",
