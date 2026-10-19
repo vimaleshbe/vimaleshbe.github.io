@@ -1,39 +1,50 @@
 {
+  "meta": {
+    "title": "Vimalesh Jeyavelmani — AI-Native Forward Deployed Engineer",
+    "description": "Vimalesh Jeyavelmani — AI-Native Forward Deployed Engineer.",
+    "footer": "© {year} {name}. All rights reserved."
+  },
   "personal": {
     "name": "Vimalesh Jeyavelmani",
-    "title": "AI Solutions Architect | Data Engineer | Agentic Orchestration Specialist",
-    "tagline": "Building the future with AI agents, intelligent orchestration systems, and reactive data platforms",
-    "bio": "I am an Associate Architect at EY with 10 years of experience in software architecture and data engineering. I have a strong passion for AI technologies and agentic orchestration, working on multiple personal applications using cutting-edge technologies including Camunda 8.8 for agentic orchestration, Azure OpenAI, AutoGen, and Model Context Protocol (MCP). I'm currently developing an enterprise-level agentic orchestration tool using Spring AI and MCP as a personal project. My expertise spans from designing microservices architectures to implementing reactive data platforms and exploring multi-agent systems for intelligent automation.",
-    "profilePhoto": "img/profile.jpg",
-    "location": "Chennai, Tamil Nadu, India",
+    "title": "AI-Native Forward Deployed Engineer",
+    "bio": "I am Associate Architect at EY, with 10+ years in software architecture and data engineering. I embed with teams to turn ambiguous business problems into production AI systems — moving fast from prototype to scale, close to users and real constraints. My focus is agentic orchestration and applied AI, working with Camunda 8.8, Azure OpenAI, AutoGen, and the Model Context Protocol (MCP), and I'm currently building an enterprise-grade agentic orchestration tool with Spring AI and MCP as a personal project. My breadth runs from AI-driven microservices and reactive data platforms to designing and operating multi-agent systems for intelligent automation.",
     "email": "vimaleshbe@gmail.com"
   },
   "social": {
     "github": "https://github.com/sponsors/vimaleshbe",
     "linkedin": "https://www.linkedin.com/in/vimaleshj"
   },
+  "sections": {
+    "home": {
+      "nav": "Home"
+    },
+    "skills": {
+      "nav": "Skills",
+      "heading": "What I work with."
+    },
+    "experience": {
+      "nav": "Experience",
+      "heading": "Where I've worked."
+    },
+    "certifications": {
+      "nav": "Certifications",
+      "heading": "Certifications."
+    },
+    "contact": {
+      "nav": "Contact",
+      "heading": "Let's work together.",
+      "subtitle": "I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to collaborate or just say hello."
+    }
+  },
   "skills": [
     {
       "category": "AI & Agentic Orchestration",
       "technologies": [
+        "Ai Native spec driven development",
+        "Microsoft Agent framework",
         "Camunda 8.8 Agentic Orchestration",
-        "Azure OpenAI",
-        "AutoGen",
         "Model Context Protocol (MCP)",
-        "Spring AI",
-        "Multi-Agent Systems",
-        "AI Engineering"
-      ]
-    },
-    {
-      "category": "Enterprise AI Development",
-      "technologies": [
-        "ChatGPT APIs",
-        "LangChain",
-        "AI Agent Development",
-        "Intelligent Automation",
-        "Workflow Orchestration",
-        "Agent Communication Protocols"
+        "Multi-Agent Systems"
       ]
     },
     {
@@ -41,9 +52,7 @@
       "technologies": [
         "AI-Driven Microservices",
         "Event-Driven Architecture",
-        "Solution Architecture",
-        "System Design",
-        "Cloud Architecture"
+        "Straming platforms"
       ]
     },
     {
@@ -52,20 +61,15 @@
         "Java",
         "Python",
         "Scala",
-        "JavaScript",
-        "Spring Boot",
-        "TypeScript"
+        "Spring Boot"
       ]
     },
     {
       "category": "Cloud & DevOps",
       "technologies": [
-        "AWS",
         "Microsoft Azure",
-        "Azure AI Services",
-        "Docker",
         "Kubernetes",
-        "OpenStack"
+        "Docker"
       ]
     },
     {
@@ -73,14 +77,17 @@
       "technologies": [
         "Apache Spark",
         "Apache Flink",
-        "Data Engineering",
-        "Real-time Analytics",
-        "SQL",
-        "R"
+        "Spring batch"
       ]
     }
   ],
   "experience": [
+    {
+      "company": "EY",
+      "position": "Architect",
+      "duration": "Oct 2026 - Present",
+      "description": "Working as an Architect focusing on architectural design and implementation of microservices and event-driven systems. Actively exploring AI technologies including Camunda 8.8 agentic orchestration, Azure OpenAI, AutoGen, and Model Context Protocol (MCP) through personal projects and proof-of-concepts."
+    },
     {
       "company": "EY",
       "position": "Associate Architect",
@@ -112,26 +119,11 @@
       "description": "Started career in software development, gained foundational experience in programming and system design."
     }
   ],
-  "education": [
-    {
-      "degree": "Engineer's Degree in Computer Science",
-      "institution": "Sri Vidya College of Engineering and Technology",
-      "year": "2012 - 2016",
-      "description": "Specialized in computer science with focus on software engineering principles. Learned private cloud creation using OpenStack with MAAS and Juju, CCNA networking, and analytics frameworks like Hadoop, Spark, and GraphLab."
-    },
-    {
-      "degree": "Higher Secondary Certificate (HSC) in Computer Science",
-      "institution": "KVS HR SEC School",
-      "year": "2006 - 2012",
-      "description": "Completed higher secondary education with specialization in Computer Science."
-    }
-  ],
   "certifications": [
     {
       "name": "GitHub Copilot",
       "issuer": "GitHub",
       "date": "Jun 2025",
-      "credentialId": "ef8c81d0-7c64-4ef2-921f-7a9b0ad88faf",
       "verificationUrl": "https://www.credly.com/badges/ef8c81d0-7c64-4ef2-921f-7a9b0ad88faf",
       "description": "Certified in GitHub Copilot for AI-powered development assistance (Expires Jun 2028)"
     },
@@ -139,7 +131,6 @@
       "name": "Camunda Knowledge - Agentic Orchestration",
       "issuer": "Camunda",
       "date": "Oct 2025",
-      "credentialId": "2b0d691c-47e9-4278-9a48-30973777da82",
       "verificationUrl": "https://www.credly.com/badges/2b0d691c-47e9-4278-9a48-30973777da82",
       "description": "Advanced knowledge in business process automation and workflow orchestration"
     },
@@ -147,7 +138,6 @@
       "name": "AWS Certified Developer - Associate",
       "issuer": "Amazon Web Services (AWS)",
       "date": "Jun 2023",
-      "credentialId": "HJ7ET8H20JR4QT5G",
       "verificationUrl": "https://cp.certmetrics.com/amazon/en/public/verify/credential/HJ7ET8H20JR4QT5G",
       "description": "Validates expertise in developing and maintaining AWS applications (Expires Jun 2026)"
     },
@@ -155,7 +145,6 @@
       "name": "Microsoft Certified: Azure Fundamentals",
       "issuer": "Microsoft",
       "date": "Jan 2022",
-      "credentialId": "I114-3190",
       "verificationUrl": "https://www.credly.com/badges/I114-3190",
       "description": "Fundamental knowledge of cloud services and Microsoft Azure platform"
     },
@@ -163,7 +152,6 @@
       "name": "EY IT Architecture - Solution Architecture - Bronze",
       "issuer": "EY",
       "date": "Mar 2025",
-      "credentialId": "d03f4ba4-3970-451e-8dcd-d9853a62dda6",
       "verificationUrl": "https://www.credly.com/badges/d03f4ba4-3970-451e-8dcd-d9853a62dda6",
       "description": "Professional certification in IT solution architecture and design patterns"
     },
@@ -171,7 +159,6 @@
       "name": "EY Artificial Intelligence - AI Engineering - Bronze",
       "issuer": "EY",
       "date": "Apr 2024",
-      "credentialId": "6f478442-79d9-4cfe-8070-28fd164f48d8",
       "verificationUrl": "https://www.credly.com/badges/6f478442-79d9-4cfe-8070-28fd164f48d8",
       "description": "Certification in AI engineering principles and implementation"
     },
@@ -179,7 +166,6 @@
       "name": "ChatGPT, Midjourney, DALL-E 3 & APIs - The Complete Guide",
       "issuer": "Udemy",
       "date": "Mar 2024",
-      "credentialId": "UC-67a687c0-ddb4-4876-993e-f14a6bd83f84",
       "verificationUrl": "https://www.udemy.com/certificate/UC-67a687c0-ddb4-4876-993e-f14a6bd83f84/",
       "description": "Complete guide to AI tools and APIs for creative and development applications"
     },
@@ -187,7 +173,6 @@
       "name": "EY Data Strategy - Data Platform - Bronze",
       "issuer": "EY",
       "date": "Jan 2022",
-      "credentialId": "EY-DS-DP-2021",
       "verificationUrl": "",
       "description": "Professional certification in data strategy and platform architecture"
     },
@@ -195,7 +180,6 @@
       "name": "Taming Big Data with Apache Spark and Python - Hands On!",
       "issuer": "Udemy",
       "date": "Dec 2021",
-      "credentialId": "UC-0bd2d989-7a3e-40cc-931e-c917a2093797",
       "verificationUrl": "https://www.udemy.com/certificate/UC-0bd2d989-7a3e-40cc-931e-c917a2093797/",
       "description": "Hands-on experience with Apache Spark for big data processing using Python"
     },
@@ -203,7 +187,6 @@
       "name": "EY Analytics - Data Science - Bronze",
       "issuer": "EY",
       "date": "Jun 2021",
-      "credentialId": "EY-AS-DS-2021",
       "verificationUrl": "",
       "description": "Foundational certification in data science and analytics methodologies"
     },
@@ -211,15 +194,13 @@
       "name": "Apache Flink | A Real Time & Hands-On course on Flink",
       "issuer": "Udemy",
       "date": "May 2021",
-      "credentialId": "UC-aad7f48d-ab68-4bb3-ad61-92aca601f50a",
       "verificationUrl": "https://www.udemy.com/certificate/UC-aad7f48d-ab68-4bb3-ad61-92aca601f50a/",
       "description": "Real-time data processing with Apache Flink for streaming applications"
     },
     {
-      "name": "R Programming A-Z™: R For Data Science With Real Exercises!",
+      "name": "R Programming A-Z: R For Data Science With Real Exercises!",
       "issuer": "Udemy",
       "date": "Mar 2021",
-      "credentialId": "UC-b3e86b32-d489-4a5a-9fc9-9a98c19a5a54",
       "verificationUrl": "",
       "description": "Complete R programming course for data science and statistical analysis"
     },
@@ -227,16 +208,8 @@
       "name": "Spring Boot / WebFlux",
       "issuer": "Udemy",
       "date": "Mar 2019",
-      "credentialId": "UC-YI5G2XYM",
       "verificationUrl": "",
       "description": "Reactive programming with Spring Boot and WebFlux framework"
     }
-  ],
-  "theme": {
-    "primaryColor": "#2563eb",
-    "secondaryColor": "#1e40af",
-    "accentColor": "#f59e0b",
-    "backgroundColor": "#f8fafc",
-    "textColor": "#1f2937"
-  }
+  ]
 }

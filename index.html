@@ -1,143 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Profile - Loading...</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="">
+    <title></title>
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=2">
+    <noscript><style>.loader{display:none!important}body.is-loading .sections,body.is-loading .section-nav,body.is-loading .float-theme{opacity:1!important}</style></noscript>
 </head>
-<body>
-    <!-- Loading Spinner -->
-    <div id="loading" class="loading">
-        <div class="spinner"></div>
+<body class="is-loading">
+
+    <!-- Ambient background -->
+    <div class="bg" aria-hidden="true">
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <div class="agents-layer" id="agents-layer">
+            <div class="agents-pan">
+                <canvas class="agents" id="agents-net" aria-hidden="true"></canvas>
+            </div>
+        </div>
+        <span class="grain"></span>
+    </div>
+    <div class="veil" aria-hidden="true"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader" role="status" aria-live="polite">
+        <div class="loader-inner">
+            <span class="loader-name" data-text="personal.name"></span>
+            <span class="loader-track"><span class="loader-fill"></span></span>
+            <span class="loader-label">Loading</span>
+        </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand" id="nav-name">Profile</div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#certifications" class="nav-link">Certifications</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+    <!-- Theme toggle -->
+    <button class="icon-btn theme-toggle float-theme" id="theme-toggle" aria-label="Toggle theme"></button>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-image">
-                    <img id="profile-photo" src="" alt="Profile Photo" class="profile-img">
-                </div>
-                <div class="hero-text">
-                    <h1 id="hero-name" class="hero-name">Loading...</h1>
-                    <h2 id="hero-title" class="hero-title">Loading...</h2>
-                    <p id="hero-tagline" class="hero-tagline">Loading...</p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                        <a href="#certifications" class="btn btn-secondary">View Certifications</a>
-                    </div>
-                    <div id="social-links" class="social-links"></div>
-                </div>
-            </div>
+    <!-- Top navigation (appears from the 2nd section onward) -->
+    <header class="topnav" id="topnav">
+        <div class="topnav-inner">
+            <button class="topnav-brand" id="topnav-brand" type="button" data-text="personal.name"></button>
+            <nav class="topnav-links" id="topnav-links" aria-label="Sections"></nav>
         </div>
-    </section>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p id="bio-text" class="bio-text">Loading...</p>
-                    <div class="about-info">
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span id="location-text">Loading...</span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <span id="email-text">Loading...</span>
-                        </div>
+    <!-- ================= Sections ================= -->
+    <main class="sections" id="sections">
+
+        <!-- Home -->
+        <section class="pane" id="home" aria-label="Intro">
+            <div class="wrap">
+                <div class="hero-grid">
+                    <h1 id="hero-name" data-text="personal.name"></h1>
+                    <span class="hero-role" id="hero-role" data-text="personal.title"></span>
+                    <p class="hero-intro" id="hero-intro" data-text="personal.bio" data-sentences="2"></p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" id="cta-contact" type="button">Get in touch</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div id="skills-container" class="skills-grid">
-                <!-- Skills will be dynamically loaded here -->
+        <!-- Skills -->
+        <section class="pane" id="skills" aria-label="Skills">
+            <div class="wrap">
+                <div class="exp-head">
+                    <h2 class="pane-title" data-text="sections.skills.heading"></h2>
+                </div>
+                <div class="skills-grid" id="skills-grid"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div id="experience-container" class="timeline">
-                <!-- Experience will be dynamically loaded here -->
+        <!-- Experience -->
+        <section class="pane" id="experience" aria-label="Experience">
+            <div class="wrap">
+                <div class="exp-head">
+                    <h2 class="pane-title" data-text="sections.experience.heading"></h2>
+                </div>
+                <div class="exp-list" id="exp-list"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications">
-        <div class="container">
-            <h2 class="section-title">Certifications</h2>
-            <div id="certifications-container" class="certifications-grid">
-                <!-- Certifications will be dynamically loaded here -->
+        <!-- Certifications -->
+        <section class="pane" id="certifications" aria-label="Certifications">
+            <div class="wrap">
+                <div class="exp-head">
+                    <h2 class="pane-title" data-text="sections.certifications.heading"></h2>
+                </div>
+                <div class="certs-grid" id="certs-grid"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's work together!</h3>
-                    <p>I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to collaborate or just say hello!</p>
-                    <div class="contact-methods">
-                        <a href="#" id="contact-email" class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>Send Email</span>
-                        </a>
-                        <a href="#" id="contact-linkedin" class="contact-method">
-                            <i class="fab fa-linkedin"></i>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="#" id="contact-github" class="contact-method">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
-                    </div>
+        <!-- Contact -->
+        <section class="pane" id="contact" aria-label="Contact">
+            <div class="wrap">
+                <div class="contact-block">
+                    <h2 class="pane-title" data-text="sections.contact.heading"></h2>
+                    <p class="pane-sub" data-text="sections.contact.subtitle"></p>
+                    <div class="contact-actions" id="contact-actions"></div>
                 </div>
             </div>
-        </div>
-    </section>
+            <footer class="site-foot" data-text="meta.footer"></footer>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 <span id="footer-name">Your Name</span>. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Section navigation -->
+    <div class="section-nav">
+        <button class="icon-btn" id="nav-up" aria-label="Previous section" title="Previous">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </button>
+        <button class="icon-btn" id="nav-down" aria-label="Next section" title="Next">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </button>
+    </div>
 
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js?v=2"></script>
 </body>
 </html>

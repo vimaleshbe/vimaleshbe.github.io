@@ -33,21 +33,21 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 def main():
     with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
-        print(f"🚀 Server starting at http://localhost:{PORT}")
-        print(f"📁 Serving files from: {os.getcwd()}")
-        print(f"💡 Your profile page: http://localhost:{PORT}")
-        print("🛑 Press Ctrl+C to stop the server")
-        
+        print(f"Server starting at http://localhost:{PORT}")
+        print(f"Serving files from: {os.getcwd()}")
+        print(f"Your profile page: http://localhost:{PORT}")
+        print("Press Ctrl+C to stop the server")
+
         # Auto-open browser
         try:
             webbrowser.open(f'http://localhost:{PORT}')
-        except:
-            print("💻 Could not auto-open browser, please open manually")
-        
+        except Exception:
+            print("Could not auto-open browser, please open manually")
+
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\n🛑 Server stopped")
+            print("\nServer stopped")
 
 if __name__ == "__main__":
     main()
