@@ -5,7 +5,7 @@
 (() => {
     'use strict';
 
-    const EMPTY = { meta: {}, personal: {}, social: {}, sections: {}, skills: [], experience: [], certifications: [] };
+    const EMPTY = { meta: {}, personal: {}, social: {}, sections: {}, awards: [], skills: [], experience: [], certifications: [] };
 
     let data = Object.assign({}, EMPTY);
 
@@ -20,7 +20,8 @@
         mail: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
         github: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>',
         linkedin: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg>',
-        ext: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>'
+        ext: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>',
+        trophy: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/></svg>'
     };
 
     /* ---------- Data ---------- */
@@ -46,6 +47,7 @@
         applyText();
         applyMeta();
         populateContact(data.personal || {});
+        populateAwards(data.awards);
         populateSkills(data.skills);
         populateExperience(data.experience);
         populateCertifications(data.certifications);
@@ -93,6 +95,37 @@
             return url
                 ? `<a class="cert-card" href="${esc(url)}" target="_blank" rel="noopener">${inner}</a>`
                 : `<div class="cert-card">${inner}</div>`;
+        }).join('');
+    }
+
+    function populateAwards(list) {
+        const box = $('#awards-grid');
+        if (!box) return;
+        if (!list || !list.length) { box.innerHTML = ''; return; }
+        /* OpenAI always first, Camunda always last; others keep config order. */
+        const tier = (a) => {
+            const issuer = (a.issuer || '').toLowerCase();
+            if (issuer.includes('openai')) return 0;
+            if (issuer.includes('camunda')) return 2;
+            return 1;
+        };
+        box.innerHTML = [...list].sort((a, b) => tier(a) - tier(b)).map((a) => {
+            const url = a.verificationUrl && a.verificationUrl.trim();
+            const inner = `
+                <span class="award-mark${a.image ? ' has-img' : ''}" aria-hidden="true">${a.image
+                    ? `<img class="award-img" src="${esc(a.image)}" alt="" width="48" height="48" loading="lazy" decoding="async">`
+                    : I.trophy}</span>
+                <div class="award-main">
+                    <span class="award-issuer">${esc(a.issuer)}</span>
+                    <h3 class="award-name">${esc(a.name)}</h3>
+                    <div class="award-foot">
+                        <span class="award-date">${esc(a.date)}</span>
+                        ${url ? `<span class="award-verify">Verify ${I.ext}</span>` : ''}
+                    </div>
+                </div>`;
+            return url
+                ? `<a class="award-card" href="${esc(url)}" target="_blank" rel="noopener" title="Verify credential">${inner}</a>`
+                : `<div class="award-card">${inner}</div>`;
         }).join('');
     }
 
@@ -172,48 +205,73 @@
             ay2: rand(3, 8), wy2: rand(0.22, 0.45), py2: rand(0, TAU)
         });
 
-        // Jittered grid, normalised → even coverage, no symmetry
-        const COLS = 15, ROWS = 10;
-        const nodes = [], edges = [];
-        const id = (r, c) => r * COLS + c;
+        // Jittered grid, normalised → even coverage, no symmetry.
+        // Density follows the viewport aspect so the mesh never looks squashed.
+        let COLS = 15, ROWS = 10;
+        let W = 0, H = 0;
+        const nodes = [], edges = [], flows = [];
         const edge = (v) => (v < 0.07 ? 0.07 : v > 0.93 ? 0.93 : v);
+        let builtAspect = 0;
+        let builtW = 0, builtH = 0;
 
-        for (let r = 0; r < ROWS; r++) {
-            for (let c = 0; c < COLS; c++) {
-                const nx = edge((c + 0.5) / COLS + (rand(-0.5, 0.5) / COLS) * 0.72);
-                const ny = edge((r + 0.5) / ROWS + (rand(-0.5, 0.5) / ROWS) * 0.72);
-                const hub = rnd() < 0.07;
-                nodes.push(makeNode(nx, ny, hub ? rand(3.5, 5) : rand(1.2, 2.2), hub));
-            }
-        }
+        const build = () => {
+            seed = 20260719;
+            nodes.length = 0;
+            edges.length = 0;
+            flows.length = 0;
 
-        for (let r = 0; r < ROWS; r++) {
-            for (let c = 0; c < COLS; c++) {
-                const i = id(r, c);
-                if (c < COLS - 1 && rnd() < 0.84) edges.push({ a: i, b: id(r, c + 1), far: false });
-                if (r < ROWS - 1 && rnd() < 0.84) edges.push({ a: i, b: id(r + 1, c), far: false });
-                if (c < COLS - 1 && r < ROWS - 1 && rnd() < 0.28) edges.push({ a: i, b: id(r + 1, c + 1), far: true });
-                if (rnd() < 0.04) {
-                    const j = Math.floor(rnd() * nodes.length);
-                    if (j !== i) edges.push({ a: i, b: j, far: true });
+            // Density follows the viewport area, so phones don't get a cramped mesh.
+            const vw = Math.max(1, window.innerWidth || W);
+            const vh = Math.max(1, window.innerHeight || H);
+            const spacing = Math.max(64, Math.min(96, Math.min(vw, vh) / 9));
+            COLS = Math.max(5, Math.min(20, Math.round(vw / spacing)));
+            ROWS = Math.max(5, Math.min(20, Math.round(vh / spacing)));
+            const id = (r, c) => r * COLS + c;
+
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    const nx = edge((c + 0.5) / COLS + (rand(-0.5, 0.5) / COLS) * 0.72);
+                    const ny = edge((r + 0.5) / ROWS + (rand(-0.5, 0.5) / ROWS) * 0.72);
+                    const hub = rnd() < 0.07;
+                    nodes.push(makeNode(nx, ny, hub ? rand(3.5, 5) : rand(1.2, 2.2), hub));
                 }
             }
-        }
 
-        // Streaming "data" packets
-        const flows = [];
-        for (let i = 0; i < 46; i++) {
-            flows.push({ e: Math.floor(rnd() * edges.length), t: rnd(), sp: rand(0.12, 0.34) });
-        }
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    const i = id(r, c);
+                    if (c < COLS - 1 && rnd() < 0.84) edges.push({ a: i, b: id(r, c + 1), far: false });
+                    if (r < ROWS - 1 && rnd() < 0.84) edges.push({ a: i, b: id(r + 1, c), far: false });
+                    if (c < COLS - 1 && r < ROWS - 1 && rnd() < 0.28) edges.push({ a: i, b: id(r + 1, c + 1), far: true });
+                    if (rnd() < 0.04) {
+                        const j = Math.floor(rnd() * nodes.length);
+                        if (j !== i) edges.push({ a: i, b: j, far: true });
+                    }
+                }
+            }
+
+            // Streaming "data" packets
+            for (let i = 0; i < 46; i++) {
+                flows.push({ e: Math.floor(rnd() * edges.length), t: rnd(), sp: rand(0.12, 0.34) });
+            }
+        };
 
         // Canvas sizing
-        let W = 0, H = 0;
         const resize = () => {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
             W = canvas.clientWidth; H = canvas.clientHeight;
             canvas.width = Math.round(W * dpr);
             canvas.height = Math.round(H * dpr);
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const aspect = W / H || 1;
+            const shrank = builtW && (Math.abs(W - builtW) / builtW > 0.2 || Math.abs(H - builtH) / builtH > 0.2);
+            if (!builtAspect || shrank || Math.abs(aspect - builtAspect) / builtAspect > 0.3) {
+                builtAspect = aspect;
+                builtW = W;
+                builtH = H;
+                build();
+            }
         };
         resize();
         window.addEventListener('resize', resize);
@@ -365,7 +423,7 @@
 
         const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
         const apply = (pos) => { root.style.transform = `translate3d(0, ${(-pos * 100).toFixed(3)}%, 0)`; };
-        const reactBg = (pos) => { if (bgReact) bgReact.setScroll(-pos * window.innerHeight * 0.16); };
+        const reactBg = (pos) => { if (bgReact) bgReact.setScroll(-Math.min(pos * 24, window.innerHeight * 0.1)); };
         const syncButtons = () => {
             if (up) up.disabled = index <= 0;
             if (down) down.disabled = index >= LAST;
@@ -377,13 +435,24 @@
             });
         };
 
-        const goTo = (target) => {
+        const goTo = (target, opts = {}) => {
             target = Math.max(0, Math.min(LAST, target));
-            if (target === index) return;
+            if (target === index) {
+                if (panes[target]) panes[target].scrollTop = 0;
+                return;
+            }
             const from = current;
             index = target;
+            if (panes[target]) panes[target].scrollTop = 0;
             syncButtons();
             syncNav();
+            if (!opts.fromHistory) {
+                const hash = '#' + panes[target].id;
+                if (location.hash !== hash) {
+                    try { history.pushState({ section: panes[target].id }, '', hash); }
+                    catch (e) { location.hash = hash; }
+                }
+            }
             if (raf) cancelAnimationFrame(raf);
             const start = performance.now();
             const duration = 780;
@@ -406,10 +475,11 @@
         if (cta) cta.addEventListener('click', () => goTo(contactIndex));
 
         const navLabel = (p) => get(data, `sections.${p.id}.nav`) || '';
+        const navShort = (p) => get(data, `sections.${p.id}.navShort`) || navLabel(p);
         const linkBox = $('#topnav-links');
         if (linkBox) {
             linkBox.innerHTML = panes
-                .map((p, i) => `<a href="#" data-i="${i}">${esc(navLabel(p))}</a>`)
+                .map((p, i) => `<a href="#" data-i="${i}"><span class="nav-long">${esc(navLabel(p))}</span><span class="nav-short">${esc(navShort(p))}</span></a>`)
                 .join('');
             linkBox.querySelectorAll('a').forEach((a) => {
                 a.addEventListener('click', (e) => { e.preventDefault(); goTo(Number(a.dataset.i)); });
@@ -417,6 +487,20 @@
         }
         const brand = $('#topnav-brand');
         if (brand) brand.addEventListener('click', () => goTo(0));
+
+        /* Address-bar routing: #awards and #/awards both open the section.
+           pushState keeps back/forward working; popstate restores it. */
+        const hashToIndex = () => {
+            const id = location.hash.replace(/^#\/?/, '').split(/[?&]/)[0].replace(/\/+$/, '').toLowerCase();
+            const i = id ? panes.findIndex((p) => p.id.toLowerCase() === id) : 0;
+            return i < 0 ? 0 : i;
+        };
+        const syncRoute = () => {
+            const target = hashToIndex();
+            if (target !== index) goTo(target, { fromHistory: true });
+        };
+        window.addEventListener('hashchange', syncRoute);
+        window.addEventListener('popstate', syncRoute);
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goTo(index + 1); }
@@ -465,8 +549,11 @@
             snap(dir);
         }, { passive: true });
 
-        apply(0);
-        reactBg(0);
+        const start = hashToIndex();
+        index = start;
+        current = start;
+        apply(start);
+        reactBg(start);
         syncButtons();
         syncNav();
     }

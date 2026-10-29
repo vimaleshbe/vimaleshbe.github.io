@@ -18,16 +18,22 @@
     "home": {
       "nav": "Home"
     },
+    "awards": {
+      "nav": "Awards",
+      "heading": "Awards & recognition."
+    },
     "skills": {
       "nav": "Skills",
       "heading": "What I work with."
     },
     "experience": {
       "nav": "Experience",
+      "navShort": "Work",
       "heading": "Where I've worked."
     },
     "certifications": {
       "nav": "Certifications",
+      "navShort": "Certs",
       "heading": "Certifications."
     },
     "contact": {
@@ -36,6 +42,64 @@
       "subtitle": "I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to collaborate or just say hello."
     }
   },
+  "awards": [
+    {
+      "name": "Codex Deployment Practitioner",
+      "issuer": "OpenAI Partner Network",
+      "date": "Oct 2026",
+      "verificationUrl": "https://oaipartnernetwork.credential.net/b167dc92-53b1-4a1b-a078-7b008c3f3039",
+      "image": "assets/img/awards/codex-deployment-practitioner.webp"
+    },
+    {
+      "name": "OpenAI Cyber Deployment Practitioner",
+      "issuer": "OpenAI Partner Network",
+      "date": "Oct 2026",
+      "verificationUrl": "https://oaipartnernetwork.credential.net/9865d127-e9ab-421a-b173-10aa3b69698c",
+      "image": "assets/img/awards/openai-cyber-deployment-practitioner.webp"
+    },
+    {
+      "name": "API Deployment Practitioner",
+      "issuer": "OpenAI Partner Network",
+      "date": "Oct 2026",
+      "verificationUrl": "https://oaipartnernetwork.credential.net/c2217007-8847-4d40-9bb3-5ef2f271ed17",
+      "image": "assets/img/awards/api-deployment-practitioner.webp"
+    },
+    {
+      "name": "Codex Solutions Practitioner",
+      "issuer": "OpenAI Partner Network",
+      "date": "Oct 2026",
+      "verificationUrl": "https://oaipartnernetwork.credential.net/be292360-4628-4f51-bb14-30df65fee9a4",
+      "image": "assets/img/awards/codex-solutions-practitioner.webp"
+    },
+    {
+      "name": "OpenAI Consultative Solutions Practitioner",
+      "issuer": "OpenAI Partner Network",
+      "date": "Sep 2026",
+      "verificationUrl": "https://oaipartnernetwork.credential.net/840cf869-5166-4e5e-bc5b-2234fe0f3d4e",
+      "image": "assets/img/awards/openai-consultative-solutions-practitioner.webp"
+    },
+    {
+      "name": "OpenAI Technical Practitioner",
+      "issuer": "OpenAI Partner Network",
+      "date": "Sep 2026",
+      "verificationUrl": "https://oaipartnernetwork.credential.net/e1b3f5f2-9877-4478-91d8-febf20adbdab",
+      "image": "assets/img/awards/openai-technical-practitioner.webp"
+    },
+    {
+      "name": "GitHub Copilot",
+      "issuer": "GitHub",
+      "date": "Jun 2025",
+      "verificationUrl": "https://www.credly.com/badges/ef8c81d0-7c64-4ef2-921f-7a9b0ad88faf",
+      "image": "assets/img/awards/github-copilot.webp"
+    },
+    {
+      "name": "Camunda Knowledge - Agentic Orchestration",
+      "issuer": "Camunda",
+      "date": "Oct 2025",
+      "verificationUrl": "https://www.credly.com/badges/2b0d691c-47e9-4278-9a48-30973777da82",
+      "image": "assets/img/awards/camunda-agentic-orchestration.webp"
+    }
+  ],
   "skills": [
     {
       "category": "AI & Agentic Orchestration",
@@ -120,20 +184,6 @@
     }
   ],
   "certifications": [
-    {
-      "name": "GitHub Copilot",
-      "issuer": "GitHub",
-      "date": "Jun 2025",
-      "verificationUrl": "https://www.credly.com/badges/ef8c81d0-7c64-4ef2-921f-7a9b0ad88faf",
-      "description": "Certified in GitHub Copilot for AI-powered development assistance (Expires Jun 2028)"
-    },
-    {
-      "name": "Camunda Knowledge - Agentic Orchestration",
-      "issuer": "Camunda",
-      "date": "Oct 2025",
-      "verificationUrl": "https://www.credly.com/badges/2b0d691c-47e9-4278-9a48-30973777da82",
-      "description": "Advanced knowledge in business process automation and workflow orchestration"
-    },
     {
       "name": "AWS Certified Developer - Associate",
       "issuer": "Amazon Web Services (AWS)",
